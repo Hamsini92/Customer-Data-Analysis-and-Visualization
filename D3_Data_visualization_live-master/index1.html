@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<script src="/d3.v3.min.js"></script>
+  	<script src="/dimple.v2.1.2.min.js"></script>
+    <style>
+    body {
+      margin: 50px;
+    }
+    </style>
+ </head>
+ <body>
+	 <div id="chartContainer">
+	 		<script type="text/javascript">
+	 			var svg = dimple.newSvg("#chartContainer",1600,1400);//creating a SVG with given size
+	 			d3.csv("finaldata.csv",function(data)// function called when athlets.csv is done loading
+	 			{
+					console.log("done loading");
+					var chart = new dimple.chart(svg,data); // getting a Chart instance to draw on
+					chart.addCategoryAxis("x","Purchase"); // setting the x axis to show the sports
+					chart.addMeasureAxis("y","Amount"); // setting the y axis to show the no. of golds own
+					chart.addSeries("Date",dimple.plot.bar); // plotting, with nationality as series.
+					chart.draw();
+	 			});
+	 		</script>
+	 	</div>
+
+		<div id='PiechartContainer12'>
+		<h2>Customer Purchase Category </h2>
+        <h4><i>*Customer Purchase categries</i><h4>
+		<script type="text/javascript">
+			var svg12 = dimple.newSvg("#PiechartContainer12", 590, 400);
+			d3.csv("finaldata.csv", function (data) {
+			var ChartInstance = new dimple.chart(svg12, data);
+			ChartInstance.setBounds(20, 20, 460, 360)
+			ChartInstance.addMeasureAxis("p", "Purchase");
+			ChartInstance.addSeries("Purchase", dimple.plot.pie);
+			ChartInstance.addLegend(500, 60, 90, 500, "left");
+			ChartInstance.draw();
+			});
+		</script>
+	</div>
+
+ </body>
+ </html>
